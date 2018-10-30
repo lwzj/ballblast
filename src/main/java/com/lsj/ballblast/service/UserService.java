@@ -8,4 +8,6 @@ import java.io.IOException;
 @Service
 public interface UserService {
     Result login(String code, String encryptedData, String iv, String channel, String ip, String shareImg, Integer shareId, String version)  throws IOException;
+
+    int getGold(Integer uid, Integer gold);
 }

@@ -19,12 +19,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Log4j2
 public class App {
-    public static final String APP_ID = "";
-    public static final String APP_SECRET = "";
+    public static final String APP_ID = "wxd8e4a0d3066b3862";
+    public static final String APP_SECRET = "c9ab3f6d2f6f3b0dfd7165df964fb722";
     public static final String GAME_NAME = "ballblast";
     public static final String GAME_TYPE = "mini";
     public static final String LOGIN_API = "https://api.weixin.qq.com/sns/jscode2session";
-    private static String version = "v1.1";
+    private static String version = "v0.1";
 
 
     public static final ConcurrentHashMap<Integer, Map<String, Object>> LEVEL_MAP = new ConcurrentHashMap(700);

@@ -18,11 +18,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class User {
     private Integer uid;
-    private String openId;//
+    private String openId;//微信接口返回的唯一id
     private String unionId;//
     private String nickname;//用户昵称
     private String avatar;//用户头像url
-    private String gender;//用户性别
+    private Integer gender;//用户性别
     private LocalDateTime createTime;//创建时间
     private LocalDateTime activeTime;//活跃时间
     private String inviteCode;//邀请码
@@ -35,4 +35,5 @@ public class User {
     private String version;//用户注册版本
     private String shareImg;//用户是通过哪个分享图进来的
     private Integer shareId;//被哪个用户邀请进来的
+
 }
