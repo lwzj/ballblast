@@ -4,13 +4,13 @@
     <resultMap id="upgaradeResultMap" type="com.lsj.ballblast.model.UpgradeGold">
         <result column="id" property="id" jdbcType="INTEGER"/>
         <result column="level" property="level" jdbcType="INTEGER"/>
-        <result column="goldCoinCost" property="goldCoinCost" jdbcType="INTEGER"/>
+        <result column="gold_coin_cost" property="goldCoinCost" jdbcType="INTEGER"/>
         <result column="speed" property="speed" jdbcType="INTEGER"/>
         <result column="power" property="power" jdbcType="INTEGER"/>
-        <result column="goldCoin" property="goldCoin" jdbcType="INTEGER"/>
-        <result column="offlineIncome" property="offlineIncome" jdbcType="INTEGER"/>
+        <result column="gold_coin" property="goldCoin" jdbcType="INTEGER"/>
+        <result column="offline_income" property="offlineIncome" jdbcType="INTEGER"/>
     </resultMap>
-    <select id="findGoldByLevel"resultMap="upgaradeResultMap">
+    <select id="findGoldByLevel" resultMap="upgaradeResultMap">
         SELECT
           *
         FROM

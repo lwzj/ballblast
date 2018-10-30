@@ -5,8 +5,8 @@
         <result column="id" property="id" jdbcType="INTEGER"/>
         <result column="uid" property="uid" jdbcType="INTEGER"/>
         <result column="level" property="level" jdbcType="INTEGER"/>
-        <result column="goldCoin" property="goldCoin" jdbcType="INTEGER"/>
-        <result column="gameLevel" property="gameLevel" jdbcType="INTEGER"/>
+        <result column="gold_coin" property="goldCoin" jdbcType="INTEGER"/>
+        <result column="game_level" property="gameLevel" jdbcType="INTEGER"/>
     </resultMap>
     <select id="findByUid" resultMap="tankResultMap">
         SELECT
@@ -41,7 +41,7 @@ SET
   `level` = #{level},
   `game_level` = #{gameLevel}
 WHERE `id` = #{id}
-)
+
     </update>
 
     <update id="updateLevel">
@@ -49,9 +49,15 @@ WHERE `id` = #{id}
   `tank_info`
 SET
   `gold_coin` = #{goldCoin},
-  `level` = #{level},
   `game_level` = #{gameLevel}
-WHERE `id` = #{id}
-)
+WHERE `uid` = #{uid}
+
+    </update>
+    <update id="updateGold">
+        UPDATE
+  `tank_info`
+SET
+  `gold_coin` = #{goldCoin}
+WHERE `uid` = #{uid}
     </update>
 </mapper>

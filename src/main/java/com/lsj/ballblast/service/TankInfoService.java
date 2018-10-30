@@ -19,4 +19,6 @@ public interface TankInfoService {
     Result upSpeed(Integer uid);
 
     Result upGrade(Integer uid);
+
+    void addGold(Integer uid, Integer gold);
 }

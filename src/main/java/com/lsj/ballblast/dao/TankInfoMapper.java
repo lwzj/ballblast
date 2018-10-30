@@ -10,7 +10,9 @@ public interface TankInfoMapper {
 
     TankInfo findByUid(@Param("uid") Integer uid);
 
-    void updateLevel(@Param("uid") Integer uid, @Param("gold") Integer gold,@Param("gameLevel") Integer gameLevel);
+    void updateLevel(@Param("uid") Integer uid, @Param("gold") Integer goldCoin,@Param("gameLevel") Integer gameLevel);
 
     void upGrade(@Param("tank") TankInfo tank);
+
+    void updateGold(@Param("uid") Integer uid, @Param("goldCoin") Integer goldCoin);
 }

@@ -3,22 +3,22 @@
 <mapper namespace="com.lsj.ballblast.dao.UserMapper">
     <resultMap id="userResultMap" type="com.lsj.ballblast.model.User">
         <result column="id" property="id" jdbcType="INTEGER"/>
-        <result column="openId" property="openId" jdbcType="VARCHAR"/>
-        <result column="unionId" property="unionId" jdbcType="VARCHAR"/>
+        <result column="open_id" property="openId" jdbcType="VARCHAR"/>
+        <result column="union_id" property="unionId" jdbcType="VARCHAR"/>
         <result column="nickname" property="nickname" jdbcType="VARCHAR"/>
         <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
         <result column="gender" property="gender" jdbcType="VARCHAR"/>
-        <result column="createTime" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="activeTime" property="activeTime" jdbcType="TIMESTAMP"/>
-        <result column="inviteCode" property="inviteCode" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="active_time" property="activeTime" jdbcType="TIMESTAMP"/>
+        <result column="invite_code" property="inviteCode" jdbcType="VARCHAR"/>
         <result column="channel" property="channel" jdbcType="VARCHAR"/>
         <result column="ip" property="ip" jdbcType="VARCHAR"/>
         <result column="city" property="city" jdbcType="VARCHAR"/>
         <result column="province" property="province" jdbcType="VARCHAR"/>
         <result column="country" property="country" jdbcType="VARCHAR"/>
         <result column="version" property="version" jdbcType="VARCHAR"/>
-        <result column="shareImg" property="shareImg" jdbcType="VARCHAR"/>
-        <result column="shareId" property="shareId" jdbcType="INTEGER"/>
+        <result column="share_img" property="shareImg" jdbcType="VARCHAR"/>
+        <result column="share_id" property="shareId" jdbcType="INTEGER"/>
     </resultMap>
     <select id="findOneByOpenId" resultMap="userResultMap">
         SELECT

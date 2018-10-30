@@ -4,7 +4,7 @@
     <resultMap id="scoreResultMap" type="com.lsj.ballblast.model.ScoreRecord">
         <result column="id" property="id" jdbcType="INTEGER"/>
         <result column="uid" property="uid" jdbcType="INTEGER"/>
-        <result column="gameLevel" property="gameLevel" jdbcType="INTEGER"/>
+        <result column="game_level" property="gameLevel" jdbcType="INTEGER"/>
         <result column="score" property="score" jdbcType="INTEGER"/>
         <result column="time" property="time" jdbcType="INTEGER"/>
         <result column="endtime" property="endtime" jdbcType="TIMESTAMP"/>
@@ -28,7 +28,7 @@
                 );
     </insert>
 
-    <select id="findByUid" resultMap="tankResultMap">
+    <select id="findByUid" resultMap="scoreResultMap">
         SELECT
           *
         FROM

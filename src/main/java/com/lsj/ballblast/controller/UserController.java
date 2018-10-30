@@ -60,7 +60,8 @@ public class UserController {
                          @RequestParam("gold") Integer gold) {
         int goldc = userService.getGold(uid, gold);
         return ResultUtil.success(RewardResp.builder()
-        .goldCoin(goldc));
+        .goldCoin(goldc)
+        .build());
     }
 
 //    @ApiOperation("用户分享")

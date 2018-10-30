@@ -136,6 +136,11 @@ public class TankInfoServiceImpl extends HandlerInterceptorAdapter implements Ta
     }
 
     @Override
+    public void addGold(Integer uid, Integer gold) {
+        tankInfoMapper.updateGold(uid,gold);
+    }
+
+    @Override
     public Result upPower(Integer uid) {
         return null;
     }

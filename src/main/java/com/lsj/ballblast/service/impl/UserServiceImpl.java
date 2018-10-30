@@ -127,19 +127,23 @@ public class UserServiceImpl implements UserService {
     public int getGold(Integer uid, Integer gold) {
         TankInfo tankInfo = tankInfoService.findByUid(uid);
         int g = tankInfo.getGoldCoin() + gold;
+        tankInfoService.addGold(uid, g);
         return g;
     }
 
     //计算离线奖励
     private Integer getOffLineIncome(Integer uid) {
         ScoreRecord record =  recordMapper.findByUid(uid);
+        if(record==null){
+            return 0;
+        }
         LocalDateTime endtime = record.getEndtime();
         LocalDateTime now = LocalDateTime.now();
         long l = endtime.toEpochSecond(ZoneOffset.of("+8"));//最后一次游戏记录的秒数
         long n = now.toEpochSecond(ZoneOffset.of("+8"));//当前时间的秒数
         long offlineTime = n - l;//离线秒数
         Integer gold = 0;
-        if(offlineTime<=BASIC_REWARD_TIME*60){
+        if(offlineTime> 0 &&offlineTime<=BASIC_REWARD_TIME*60){
             return BASIC_REWARD;
         }else{
             if(offlineTime<=LEVEL1*60*60){
