@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.ballblast.dao.TankInfoMapper">
+    <resultMap id="tankResultMap" type="com.lsj.ballblast.model.TankInfo">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
+        <result column="goldCoin" property="goldCoin" jdbcType="INTEGER"/>
+        <result column="gameLevel" property="gameLevel" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="findByUid" resultMap="tankResultMap">
+        SELECT
+          *
+        FROM
+          `tank_info`
+        WHERE
+        `uid` = #{uid,jdbcType=INTEGER}
+    </select>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="tank.id">
+        INSERT INTO tank_info ( `id`,
+                  `uid`,
+                  `gold_coin`,
+                  `level`,
+                  `game_level`)
+        VALUES (#{tank.id,jdbcType=INTEGER},
+                #{tank.uid,jdbcType=INTEGER},
+                #{tank.goldCoin,jdbcType=INTEGER},
+                #{tank.level,jdbcType=INTEGER},
+                #{tank.gameLevel,jdbcType=INTEGER}
+                );
+    </insert>
+
+    <update id="upGrade">
+        UPDATE
+  `tank_info`
+SET
+  `uid` = #{uid},
+  `gold_coin` = #{goldCoin},
+  `level` = #{level},
+  `game_level` = #{gameLevel}
+WHERE `id` = #{id}
+)
+    </update>
+
+    <update id="updateLevel">
+        UPDATE
+  `tank_info`
+SET
+  `gold_coin` = #{goldCoin},
+  `level` = #{level},
+  `game_level` = #{gameLevel}
+WHERE `id` = #{id}
+)
+    </update>
+</mapper>

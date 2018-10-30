@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.ballblast.dao.UpGradeGoldMapper">
+    <resultMap id="upgaradeResultMap" type="com.lsj.ballblast.model.UpgradeGold">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
+        <result column="goldCoinCost" property="goldCoinCost" jdbcType="INTEGER"/>
+        <result column="speed" property="speed" jdbcType="INTEGER"/>
+        <result column="power" property="power" jdbcType="INTEGER"/>
+        <result column="goldCoin" property="goldCoin" jdbcType="INTEGER"/>
+        <result column="offlineIncome" property="offlineIncome" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="findGoldByLevel"resultMap="upgaradeResultMap">
+        SELECT
+          *
+        FROM
+          `upgrade_gold`
+        WHERE
+        `level` = #{level};
+    </select>
+</mapper>

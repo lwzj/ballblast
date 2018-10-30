@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsj.ballblast.dao.ScoreRecordMapper">
+    <resultMap id="scoreResultMap" type="com.lsj.ballblast.model.ScoreRecord">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="gameLevel" property="gameLevel" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+        <result column="time" property="time" jdbcType="INTEGER"/>
+        <result column="endtime" property="endtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="scoreRecord.id">
+      INSERT INTO `ballblast`.`score_record` (
+  `id`,
+  `uid`,
+  `game_level`,
+  `score`,
+  `time`,
+  `endtime`
+)  VALUES (#{scoreRecord.id,jdbcType=INTEGER},
+                #{scoreRecord.uid,jdbcType=INTEGER},
+                #{scoreRecord.gameLevel,jdbcType=INTEGER},
+                #{scoreRecord.score,jdbcType=INTEGER},
+                #{scoreRecord.time,jdbcType=INTEGER},
+                #{scoreRecord.endtime,jdbcType=TIMESTAMP}
+                );
+    </insert>
+
+    <select id="findByUid" resultMap="tankResultMap">
+        SELECT
+          *
+        FROM
+          `score_record`
+        WHERE
+        `uid` = #{uid,jdbcType=INTEGER}
+    </select>
+
+</mapper>
