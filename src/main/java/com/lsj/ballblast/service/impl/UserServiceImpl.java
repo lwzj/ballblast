@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lsj.ballblast.annotation.TokenService;
 import com.lsj.ballblast.config.App;
 import com.lsj.ballblast.dao.ScoreRecordMapper;
+import com.lsj.ballblast.dao.TankInfoMapper;
 import com.lsj.ballblast.dao.UpGradeGoldMapper;
 import com.lsj.ballblast.dao.UserMapper;
 import com.lsj.ballblast.dto.Result;
@@ -13,7 +14,6 @@ import com.lsj.ballblast.model.ScoreRecord;
 import com.lsj.ballblast.model.TankInfo;
 import com.lsj.ballblast.model.UpgradeGold;
 import com.lsj.ballblast.model.User;
-import com.lsj.ballblast.service.ScoreRecordService;
 import com.lsj.ballblast.service.TankInfoService;
 import com.lsj.ballblast.service.UserService;
 import com.lsj.ballblast.utils.*;
@@ -40,6 +40,8 @@ public class UserServiceImpl implements UserService {
     private ScoreRecordMapper recordMapper;
     @Autowired
     private TankInfoService tankInfoService;
+    @Autowired
+    private TankInfoMapper tankInfoMapper;
     @Autowired
     private TokenService tokenService;
     public static final String IP_QUERY_URI = "http://ip.ws.126.net/ipquery?ip=";
@@ -133,8 +135,8 @@ public class UserServiceImpl implements UserService {
 
     //计算离线奖励
     private Integer getOffLineIncome(Integer uid) {
-        ScoreRecord record =  recordMapper.findByUid(uid);
-        if(record==null){
+        ScoreRecord record = recordMapper.findByUid(uid);
+        if (record == null) {
             return 0;
         }
         LocalDateTime endtime = record.getEndtime();
@@ -143,22 +145,25 @@ public class UserServiceImpl implements UserService {
         long n = now.toEpochSecond(ZoneOffset.of("+8"));//当前时间的秒数
         long offlineTime = n - l;//离线秒数
         Integer gold = 0;
-        if(offlineTime> 0 &&offlineTime<=BASIC_REWARD_TIME*60){
-            return BASIC_REWARD;
-        }else{
-            if(offlineTime<=LEVEL1*60*60){
-                int goldcion = (int)(offlineTime / 12);
+        if (offlineTime > 0 && offlineTime <= BASIC_REWARD_TIME * 60) {
+            gold = BASIC_REWARD;
+        } else {
+            if (offlineTime <= LEVEL1 * 60 * 60) {
+                int goldcion = (int) (offlineTime / 12);
                 gold = goldcion + BASIC_REWARD;
             } else if (offlineTime > LEVEL1 * 60 * 60 && offlineTime < LEVEL2 * 60 * 60) {
                 int g1 = LEVEL1 * 60 * 60 / 12;
-                int g2 = (int)(offlineTime - LEVEL1*60*60)/60;
-                gold = BASIC_REWARD+g1+g2;
-            }else{
+                int g2 = (int) (offlineTime - LEVEL1 * 60 * 60) / 60;
+                gold = BASIC_REWARD + g1 + g2;
+            } else {
                 int g1 = LEVEL1 * 60 * 60 / 12;
-                int g2 = (LEVEL2 - LEVEL1)*60;
-                gold = BASIC_REWARD+g1+g2;
+                int g2 = (LEVEL2 - LEVEL1) * 60;
+                gold = BASIC_REWARD + g1 + g2;
             }
         }
+        int level = tankInfoMapper.findLevelByUid(uid);
+        UpgradeGold goldByLevel = upGradeGoldMapper.findGoldByLevel(level);
+        gold = (int) (gold * IntegerUtil.intToFloat(goldByLevel.getOfflineIncome()));
         return gold;
     }
 
@@ -190,5 +195,9 @@ public class UserServiceImpl implements UserService {
         loginMap.put("js_code", code);
         loginMap.put("grant_type", "authorization_code");
         return loginMap;
+    }
+
+    public void exitGame(Integer uid) {
+
     }
 }

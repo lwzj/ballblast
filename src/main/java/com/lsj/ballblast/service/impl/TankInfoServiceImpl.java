@@ -103,6 +103,14 @@ public class TankInfoServiceImpl extends HandlerInterceptorAdapter implements Ta
         scoreRecordMapper.insret(scoreRecord);
         //跟新最高分
         Integer maxScore = 0;
+        String redisKey = RedisKey.MAX_SCORE + uid;
+        Integer rMaxScore = stringIntegerValueOperations.get(redisKey);
+        if (score > rMaxScore) {
+            stringIntegerValueOperations.set(redisKey, score);
+            maxScore = score;
+        } else {
+            maxScore = rMaxScore;
+        }
 
         //生成返回的对象信息
         GameOverResp resp = GameOverResp.builder()

@@ -17,6 +17,10 @@
         `uid` = #{uid,jdbcType=INTEGER}
     </select>
 
+    <select id="findLevelByUid" resultType="java.lang.Integer">
+        SELECT level from tank_info where uid = {uid,jdbcType=INTEGER}
+    </select>
+
     <!--auto generated Code-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="tank.id">
         INSERT INTO tank_info ( `id`,

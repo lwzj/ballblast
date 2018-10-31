@@ -15,4 +15,6 @@ public interface TankInfoMapper {
     void upGrade(@Param("tank") TankInfo tank);
 
     void updateGold(@Param("uid") Integer uid, @Param("goldCoin") Integer goldCoin);
+
+    int findLevelByUid(@Param("uid") Integer uid);
 }
